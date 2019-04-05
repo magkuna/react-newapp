@@ -1,5 +1,6 @@
 import React from 'react'
 import { loadUsers } from './logic'
+import UserItem from './UserItem'
 
 const ListUsers = (props) => {
     const users = loadUsers()
@@ -9,11 +10,10 @@ const ListUsers = (props) => {
             {
                 users.map(
                     user => (
-                        <div
-                        key={user.uuid}
-                        >
-                            {user.name}
-                        </div>
+                        <UserItem
+                            key={user.uuid}
+                            user={user}
+                        />
                     )
                 )
             }
