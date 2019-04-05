@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import {User, saveUser} from './logic'
+import { User, saveUser } from './logic'
 //import Input from './Input'
 
 class AddUser extends React.Component {
@@ -19,8 +19,8 @@ class AddUser extends React.Component {
         if (!this.state.name) return
         if (!this.state.email) return
 
-        const user = new User (this.state.name, this.state.email, this.state.avatar)
-        
+        const user = new User(this.state.name, this.state.email, this.state.avatar)
+
         saveUser(user)
     }
 

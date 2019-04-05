@@ -1,26 +1,31 @@
 import React from 'react'
-import { loadUsers } from './logic'
-import UserItem from './UserItem'
 
-const ListUsers = (props) => {
-    const users = loadUsers()
+import List from './List'
 
+import { loadUsers, deleteUser } from './logic'
+
+class ListUsers extends React.Component {
+  state = {
+    users: loadUsers(),
+  }
+
+  deleteUserAndReRender = (uuid) => {
+    deleteUser(uuid)
+
+    this.setState({
+      users: loadUsers(),
+    })
+  }
+
+  render() {
     return (
-        <div>
-            {
-                users.map(
-                    user => (
-                        <UserItem
-                            key={user.uuid}
-                            user={user}
-                        />
-                    )
-                )
-            }
-        </div>
+      <div>
+        <List
+          users={this.state.users}
+          deleteUserAndReRender = {this.deleteUserAndReRender}
+        />
+      </div>
     )
-
+  }
 }
-
-
 export default ListUsers
